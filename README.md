@@ -1,21 +1,22 @@
 # COS482, atividade Mockito
 
-O enunciado completo está no Moodle, em `atividade_mockito.pdf`.
+O enunciado completo está em [atividade_mockito.pdf](atividade_mockito.pdf).
 
 ## Abrir o projeto
 
-Projeto Maven, com JUnit 5 e Mockito declarados no `pom.xml`. Requer JDK 17 ou
+O projeto Maven fica na pasta `atividade-mockito`, com JUnit 5 e Mockito
+declarados no `atividade-mockito/pom.xml`. Requer JDK 17 ou
 mais recente.
 
 - **Eclipse:** File, Import, Maven, Existing Maven Projects.
-- **IntelliJ IDEA e VS Code:** abrem a pasta direto.
-- **Terminal:** `mvn test`.
+- **IntelliJ IDEA e VS Code:** abra a pasta `atividade-mockito`.
+- **Terminal:** na raiz do repositório, execute `mvn -f atividade-mockito/pom.xml test`.
 
 ## Onde fica cada coisa
 
 ```
-src/main/java/jogo/    o código a refatorar (Jogo e Principal)
-src/test/java/jogo/    JogoTest e JogadorTest, onde entram os testes
+atividade-mockito/src/main/java/jogo/    código do jogo (incluindo Jogo e Principal)
+atividade-mockito/src/test/java/jogo/    testes de Jogo e Jogador
 ```
 
 ## Refatoração
@@ -40,5 +41,6 @@ Os testes de `Jogo` cobrem as regras R1 a R9 com mocks, enquanto os testes de
 
 ## Entrega
 
-Rode `mvn test`, apague a pasta `target`, compacte a pasta `atividade-mockito` inteira
+Na pasta `atividade-mockito`, rode `mvn test` e apague a pasta `target`.
+Depois, compacte a pasta `atividade-mockito` inteira
 como `mockito_SEUDRE.zip` e envie pelo Moodle.
