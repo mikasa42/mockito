@@ -9,13 +9,21 @@ public class Jogo {
     public static final int BONUS_DO_SEIS = 5;
     public static final int PENALIDADE_DO_UM = 3;
 
-    private final Dado dado = new Dado();
-    private final Jogador jogador1 = new Jogador("Ana");
-    private final Jogador jogador2 = new Jogador("Bruno");
-    private final ServidorDePlacar servidor = new ServidorDePlacar();
+    private final Dado dado;
+    private final Jogador jogador1;
+    private final Jogador jogador2;
+    private final ServidorDePlacar servidor;
 
     private Jogador vencedor;
     private boolean registroPendente;
+
+    public Jogo(Dado dado, Jogador jogador1,
+                Jogador jogador2, ServidorDePlacar servidor) {
+        this.dado = dado;
+        this.jogador1 = jogador1;
+        this.jogador2 = jogador2;
+        this.servidor = servidor;
+    }
 
     public void jogarRodada() {
         if (vencedor != null) {

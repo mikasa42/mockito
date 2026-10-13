@@ -4,7 +4,8 @@ package jogo;
 public class Principal {
 
     public static void main(String[] args) {
-        Jogo jogo = new Jogo();
+        Jogo jogo = new Jogo(new Dado(), new Jogador("Ana"),
+                new Jogador("Bruno"), new ServidorDePlacar());
         int rodadas = 0;
         while (!jogo.isTerminado()) {
             jogo.jogarRodada();
