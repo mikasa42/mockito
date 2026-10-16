@@ -9,6 +9,25 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class JogadorTest {
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, Integer.MAX_VALUE})
+    void adicionarPontosNoLimiteNaoPodeTornarPontuacaoNegativa(int quantidade) {
+        Jogador jogador = new Jogador("Ana");
+        jogador.adicionarPontos(Integer.MAX_VALUE);
+
+        // Rejeitar overflow é aceitável, desde que preserve os pontos anteriores.
+        try {
+            jogador.adicionarPontos(quantidade);
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            assertEquals(Integer.MAX_VALUE, jogador.getPontos());
+            return;
+        }
+
+        assertTrue(jogador.getPontos() >= 0,
+                "Somar uma quantidade positiva não pode produzir pontuação negativa: "
+                        + jogador.getPontos());
+    }
+
     @Test
     void j1GuardaNomeEComecaComZeroPontos() {
         Jogador jogador = new Jogador("Ana");

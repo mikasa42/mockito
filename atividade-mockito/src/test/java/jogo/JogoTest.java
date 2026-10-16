@@ -221,4 +221,21 @@ class JogoTest {
         when(jogador.getPontos()).thenReturn(pontos);
         when(jogador.getNome()).thenReturn(nome);
     }
+
+    @Test
+    void r8ReenviaResultadoOriginalMesmoSePontuacaoDoJogadorMudar() {
+        prepararVitoria(jogador1, "Ana", 30);
+        doThrow(new ServidorIndisponivelException("Fora do ar"))
+                .doNothing().when(servidor).registrarVitoria(eq("Ana"), anyInt());
+        jogo.jogarRodada();
+        assertTrue(jogo.isRegistroPendente());
+
+        // O jogador é uma dependência mutável, acessível fora da partida.
+        when(jogador1.getPontos()).thenReturn(40);
+        jogo.tentarRegistrarNovamente();
+
+        verify(servidor, times(2)).registrarVitoria("Ana", 30);
+        verifyNoMoreInteractions(servidor);
+        assertFalse(jogo.isRegistroPendente());
+    }
 }
